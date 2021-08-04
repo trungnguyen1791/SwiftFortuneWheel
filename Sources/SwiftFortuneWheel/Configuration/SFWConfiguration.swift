@@ -270,7 +270,8 @@ public extension SFWConfiguration {
             case .bottom:
                 return 180
             case .left:
-                return 270
+//                 return 270
+                return 335
             }
         }
     }
