@@ -171,7 +171,7 @@ public extension SFWConfiguration {
         
         /// Background color, default value is `.clear`
         public var backgroundColor: SFWColor = .clear
-        
+        public var tintColor: SFWColor = .clear
         /// Text Color, default value is `.black`
         public var textColor: SFWColor = .black
         
