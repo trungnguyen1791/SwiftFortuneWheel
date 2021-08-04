@@ -127,6 +127,7 @@ extension SpinButton {
         self.setTitleColor(preferences?.textColor, for: .normal)
         self.setTitleColor(preferences?.disabledTextColor, for: .disabled)
         self.titleLabel?.font = preferences?.font
+        self.tintColor = preferences?.tintColor
         #endif
     }
 }
