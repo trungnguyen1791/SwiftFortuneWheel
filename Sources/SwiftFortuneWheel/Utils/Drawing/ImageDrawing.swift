@@ -36,14 +36,14 @@ extension ImageDrawing {
             image = image.withTintColor(tintColor)
         }
         
-        let flipAngle: CGFloat = preferences.flipUpsideDown ?  180 : 0
+        let flipAngle: CGFloat = 0
         
         context.saveGState()
         context.rotate(by: (flipAngle + rotation) * CGFloat.pi/180)
         
         let aspectRatioRect = preferences.preferredSize.aspectFit(sizeImage: image.size)
         let yPositionWithoutOffset = radius - preferences.verticalOffset - topOffset - margins.top
-        let flipYOffset: CGFloat = preferences.flipUpsideDown ?  -radius + aspectRatioRect.height / 2  : 0
+        let flipYOffset: CGFloat = 0
         let yPosition = yPositionWithoutOffset + flipYOffset
         
         let rectangle = CGRect(x: -(aspectRatioRect.size.width / 2), y: -yPosition, width: aspectRatioRect.size.width, height: aspectRatioRect.size.height)
@@ -51,6 +51,16 @@ extension ImageDrawing {
         if let backgroundColor = preferences.backgroundColor {
             backgroundColor.setFill()
             context.fill(rectangle)
+        }
+        
+        //        Rotation is around the origin. To rotate around another point, translate that point to the origin, rotate, and translate back.
+        if preferences.flipUpsideDown {
+            let centerX = rectangle.midX
+            let centerY = rectangle.midY
+            
+            context.translateBy(x: centerX, y: centerY)
+            context.rotate(by: 180 * CGFloat.pi/180)
+            context.translateBy(x: -centerX, y: -centerY)
         }
         
         #if os(macOS)
