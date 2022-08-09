@@ -51,5 +51,6 @@ extension Slice {
         case image(image: SFWImage, preferences: ImagePreferences)
         case text(text: String, preferences: TextPreferences)
         case line(preferences: LinePreferences)
+        case multipleImage(image: [UIImage], preferences: ImagePreferences)
     }
 }
