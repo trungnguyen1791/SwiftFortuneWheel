@@ -74,6 +74,18 @@ extension SliceDrawing {
         // Draws slice content
         slice.contents.enumerated().forEach { (contentIndex, element) in
             switch element {
+            case .multipleImage(let images, let preferences):
+                self.drawMultipleImages(in: context,
+                                        images: images,
+                                        preferences: preferences,
+                                        rotations: rotation,
+                                        index: index,
+                                        topOffset: topOffset,
+                                        radius: radius,
+                                        margins: margins)
+                //The bigger topOffset, the nearer to the center
+                topOffset += preferences.preferredSize.height + preferences.verticalOffset
+
             case .text(let text, let preferences):
                 topOffset += prepareDraw(text: text,
                                          in: context,
